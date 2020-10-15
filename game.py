@@ -21,7 +21,7 @@ def remove_punct(text):
     for i in text:
         if i in punctuation:
            text=text.replace(i,"")
-    print(text)
+    return (text)
 
     # pass # The pass statement does nothing. Replace it with the body of your function.
 
@@ -44,7 +44,7 @@ def remove_spaces(text):
     >>> remove_spaces("   ")
     ''
     """
-    print(text.strip())
+    return (text.strip())
 # print(remove_spaces("  Hello!  "))
 # print(remove_spaces("  Python  is  easy!   "))
 # print(remove_spaces("Python is easy!"))
@@ -63,7 +63,7 @@ def normalise_input(user_input):
     for i in user_input:
         if i in punctuation:
             user_input = user_input.replace(i, "")
-    print(user_input.strip().lower())
+    return (user_input.strip().lower())
 
 # print(normalise_input("  Go south! "))
 # print(normalise_input("!!! tAkE,. LAmp!?! "))
@@ -88,7 +88,7 @@ def display_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     formatted="\n{}\n\n{}\n".format(room["name"].upper(),room["description"])
-    print(formatted)
+    return formatted
     # pass # The pass statement does nothing. Replace it with the body of your function.
 
 # display_room(rooms["Office"])
@@ -114,13 +114,14 @@ def exit_leads_to(exits, direction):
     # print(rooms["Tutor"])
     # test=[x for x in exits if direction in x]
 
-    print(rooms[exits[direction]]["name"])
+    # print('"{}"'.format(rooms[exits[direction]]["name"]))
+    return ("{}".format(rooms[exits[direction]]["name"]))
     # print(rooms[exits[direction]])
     # print(rooms[exits[key]])
     # print(rooms[exits[direction]]["name"])
     
 # exit_leads_to(rooms["Reception"]["exits"], "south")
-exit_leads_to(rooms["Reception"]["exits"], "south")
+# exit_leads_to(rooms["Reception"]["exits"], "south")
 # exit_leads_to(rooms["Reception"]["exits"], "east")
 # exit_leads_to(rooms["Tutor"]["exits"], "west")
 def print_menu_line(direction, leads_to):
@@ -136,8 +137,8 @@ def print_menu_line(direction, leads_to):
     >>> print_menu_line("south", "MJ and Simon's room")
     Go SOUTH to MJ and Simon's room.
     """
-    pass
-
+    # print("Go {} to {}".format(direction.upper(),leads_to))
+    return "Go {} to {}".format(direction.upper(),leads_to)
 
 def print_menu(exits):
     """This function displays the menu of available exits to the player. The
@@ -159,9 +160,12 @@ def print_menu(exits):
     # COMPLETE THIS PART:
     # Iterate over available exits:
     #     and for each exit print the appropriate menu line
+    for i in exits:
+        print(print_menu_line(i,exit_leads_to(exits,i)))
 
     print("Where do you want to go?")
 
+# print_menu(rooms["Reception"]["exits"])
 
 def is_valid_exit(exits, user_input):
     """This function checks, given a dictionary "exits" (see map.py) and
@@ -196,10 +200,12 @@ def menu(exits):
     while True:
         pass
         # COMPLETE THIS PART:
+        print_menu(exits)
         
         # Display menu
 
         # Read player's input
+        player_input=str(input())
 
         # Normalise the input
 
@@ -207,7 +213,7 @@ def menu(exits):
             # If so, return the player's choice
 
 
-
+menu(rooms["Reception"]["exits"])
 
 def move(exits, direction):
     """This function returns the room into which the player will move if, from a
@@ -247,5 +253,5 @@ def main():
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.
 # See https://docs.python.org/3.4/library/__main__.html for explanation
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
