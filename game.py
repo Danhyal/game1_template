@@ -2,6 +2,7 @@
 
 from map import rooms
 import string
+from string import punctuation
 
 
 def remove_punct(text):
@@ -17,8 +18,15 @@ def remove_punct(text):
     >>> remove_punct(",go!So.?uTh")
     'goSouTh'
     """
-    pass # The pass statement does nothing. Replace it with the body of your function.
-    
+    for i in text:
+        if i in punctuation:
+           text=text.replace(i,"")
+    print(text)
+
+    # pass # The pass statement does nothing. Replace it with the body of your function.
+
+# print(remove_punct("Hello World"))
+# print(remove_punct("-- ...Hey! -- Yes?!..."))
     
 def remove_spaces(text):
     """This function is used to remove leading and trailing spaces from a string.
@@ -36,9 +44,10 @@ def remove_spaces(text):
     >>> remove_spaces("   ")
     ''
     """
-    pass
-
-
+    print(text.strip())
+# print(remove_spaces("  Hello!  "))
+# print(remove_spaces("  Python  is  easy!   "))
+# print(remove_spaces("Python is easy!"))
 def normalise_input(user_input):
     """This function removes all punctuation, leading and trailing
     spaces from a string, and converts the string to lower case.
@@ -51,8 +60,13 @@ def normalise_input(user_input):
     >>> normalise_input("HELP!!!!!!!")
     'help'
     """
-    pass
+    for i in user_input:
+        if i in punctuation:
+            user_input = user_input.replace(i, "")
+    print(user_input.strip().lower())
 
+# print(normalise_input("  Go south! "))
+# print(normalise_input("!!! tAkE,. LAmp!?! "))
     
 def display_room(room):
     """This function takes a room as an input and nicely displays its name
@@ -73,8 +87,11 @@ def display_room(room):
 
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
+    formatted="\n{}\n\n{}\n".format(room["name"].upper(),room["description"])
+    print(formatted)
     # pass # The pass statement does nothing. Replace it with the body of your function.
 
+# display_room(rooms["Office"])
     
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
@@ -88,9 +105,24 @@ def exit_leads_to(exits, direction):
     >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
     'Reception'
     """
-    pass
-    
+    # print(exits)
+    # print(direction)
+    # key=list(exits.keys())[0]
+    # print(exits)
+    # print(rooms.keys())
+    # print(rooms["Reception"])
+    # print(rooms["Tutor"])
+    # test=[x for x in exits if direction in x]
 
+    print(rooms[exits[direction]]["name"])
+    # print(rooms[exits[direction]])
+    # print(rooms[exits[key]])
+    # print(rooms[exits[direction]]["name"])
+    
+# exit_leads_to(rooms["Reception"]["exits"], "south")
+exit_leads_to(rooms["Reception"]["exits"], "south")
+# exit_leads_to(rooms["Reception"]["exits"], "east")
+# exit_leads_to(rooms["Tutor"]["exits"], "west")
 def print_menu_line(direction, leads_to):
     """This function prints a line of a menu of exits. It takes two strings: a
     direction (the name of an exit) and the name of the room into which it
@@ -215,5 +247,5 @@ def main():
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.
 # See https://docs.python.org/3.4/library/__main__.html for explanation
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
