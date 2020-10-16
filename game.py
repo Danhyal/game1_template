@@ -160,7 +160,7 @@ def print_menu(exits):
     # Iterate over available exits:
     #     and for each exit print the appropriate menu line
     for i in exits:
-        print(print_menu_line(i,exit_leads_to(exits,i)))
+        print_menu_line(i,exit_leads_to(exits,i))
 
     print("Where do you want to go?")
 
@@ -233,7 +233,7 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-    result=rooms[exits[[x for x in exits if x==direction][0]]]
+    result=rooms[exits[[x for x in exits if x==direction.lower()][0]]]
     return result
 
 
