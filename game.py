@@ -88,11 +88,10 @@ def display_room(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
     formatted="\n{}\n\n{}\n".format(room["name"].upper(),room["description"])
-    return formatted
+    print(formatted)
     # pass # The pass statement does nothing. Replace it with the body of your function.
 
-# display_room(rooms["Office"])
-    
+
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
     exit taken from this dictionary). It returns the name of the room into which
@@ -138,7 +137,7 @@ def print_menu_line(direction, leads_to):
     Go SOUTH to MJ and Simon's room.
     """
     # print("Go {} to {}".format(direction.upper(),leads_to))
-    return "Go {} to {}".format(direction.upper(),leads_to)
+    print ( "Go {} to {}.".format(direction.upper(),leads_to))
 
 def print_menu(exits):
     """This function displays the menu of available exits to the player. The
@@ -183,7 +182,11 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    pass
+    if user_input in exits:
+        return True
+    else:
+        return False
+
 
 
 def menu(exits):
@@ -210,8 +213,11 @@ def menu(exits):
         # Normalise the input
 
         # Check if the input makes sense (is valid exit)
+        if is_valid_exit(exits,player_input.lower()):
+            return player_input
+        else:
+            print("exit not valid, try again")
             # If so, return the player's choice
-
 
 menu(rooms["Reception"]["exits"])
 
@@ -227,9 +233,11 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-    pass
+    result=rooms[exits[[x for x in exits if x==direction][0]]]
+    return result
 
 
+# move(rooms["Reception"]["exits"], "south")
 # This is the entry point of our program
 def main():
     # Start game at the reception
