@@ -65,7 +65,7 @@ def normalise_input(user_input):
             user_input = user_input.replace(i, "")
     return (user_input.strip().lower())
 
-# print(normalise_input("  Go south! "))
+
 # print(normalise_input("!!! tAkE,. LAmp!?! "))
     
 def display_room(room):
@@ -104,25 +104,10 @@ def exit_leads_to(exits, direction):
     >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
     'Reception'
     """
-    # print(exits)
-    # print(direction)
-    # key=list(exits.keys())[0]
-    # print(exits)
-    # print(rooms.keys())
-    # print(rooms["Reception"])
-    # print(rooms["Tutor"])
-    # test=[x for x in exits if direction in x]
+#   rooms[exits[direction]]["name"]
 
-    # print('"{}"'.format(rooms[exits[direction]]["name"]))
     return ("{}".format(rooms[exits[direction]]["name"]))
-    # print(rooms[exits[direction]])
-    # print(rooms[exits[key]])
-    # print(rooms[exits[direction]]["name"])
-    
-# exit_leads_to(rooms["Reception"]["exits"], "south")
-# exit_leads_to(rooms["Reception"]["exits"], "south")
-# exit_leads_to(rooms["Reception"]["exits"], "east")
-# exit_leads_to(rooms["Tutor"]["exits"], "west")
+
 def print_menu_line(direction, leads_to):
     """This function prints a line of a menu of exits. It takes two strings: a
     direction (the name of an exit) and the name of the room into which it
@@ -182,11 +167,8 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    if user_input in exits:
-        return True
-    else:
-        return False
 
+    return user_input in exits
 
 
 def menu(exits):
@@ -219,7 +201,6 @@ def menu(exits):
             print("exit not valid, try again")
             # If so, return the player's choice
 
-menu(rooms["Reception"]["exits"])
 
 def move(exits, direction):
     """This function returns the room into which the player will move if, from a
